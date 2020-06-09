@@ -162,7 +162,9 @@ class ModelRunner(object):
     if self._config.do_train:
       (self._train_input_fn,
        self.train_steps) = self._preprocessor.prepare_train()
+      print(">> Train steps set to: {}".format(self.train_steps))
     else:
+      print(">> Train steps is zero -- why?")
       self._train_input_fn, self.train_steps = None, 0
     model_fn = model_fn_builder(
         config=config,
@@ -179,6 +181,7 @@ class ModelRunner(object):
 
   def train(self):
     utils.log("Training for {:} steps".format(self.train_steps))
+
     self._estimator.train(
         input_fn=self._train_input_fn, max_steps=self.train_steps)
 
