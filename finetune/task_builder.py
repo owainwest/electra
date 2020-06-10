@@ -66,5 +66,17 @@ def get_task(config: configure_finetuning.FinetuningConfig, task_name,
     return qa_tasks.SearchQA(config, tokenizer)
   elif task_name == "chunk":
     return tagging_tasks.Chunking(config, tokenizer)
+
+  elif task_name == "scopefold":
+    return classification_tasks.SCOPeFold(config, tokenizer)
+  elif task_name == "scopeclass":
+    return classification_tasks.SCOPeClass(config, tokenizer)
+  elif task_name == "scopesuperfamily":
+    return classification_tasks.SCOPeSuperfamily(config, tokenizer)
+  elif task_name == "scopefamily":
+    return classification_tasks.SCOPeFamily(config, tokenizer)
+  elif task_name == "scopespecies":
+    return classification_tasks.SCOPeSpecies(config, tokenizer)
+
   else:
     raise ValueError("Unknown task " + task_name)

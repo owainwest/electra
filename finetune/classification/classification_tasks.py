@@ -482,4 +482,14 @@ class SCOPeFamily(ClassificationTask):
   #TODO:  test
   def _create_examples(self, lines, split):
     return self._load_glue(lines, split, 5, None, 3)
+
+class SCOPeSpecies(ClassificationTask):
+  def __init__(self, config: configure_finetuning.FinetuningConfig, tokenizer):
+    with open("./ft_data/scope/taxids.tsv") as f:
+      categories = [line.rstrip('\n') for line in f]
+    super(SCOPeSpecies, self).__init__(config, "scope", tokenizer, categories)
+
+  #TODO:  test
+  def _create_examples(self, lines, split):
+    return self._load_glue(lines, split, 5, None, 4)
     
