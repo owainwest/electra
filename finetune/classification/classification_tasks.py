@@ -443,8 +443,9 @@ class STS(RegressionTask):
 
 class SCOPeClass(ClassificationTask):
   def __init__(self, config: configure_finetuning.FinetuningConfig, tokenizer):
-    with open("./ft_data/scope/scopeclasses.tsv") as f:
-      categories = [line.rstrip('\n') for line in f]
+    categories = read_tsv(os.path.join(self.config.raw_data_dir(self.name), "categories" + ".tsv"))
+    # with open("./ft_data/scope/scopeclasses.tsv") as f:
+    #   categories = [line.rstrip('\n') for line in f]
     super(SCOPeClass, self).__init__(config, "scope", tokenizer, categories)
 
   #TODO:  test
@@ -454,8 +455,9 @@ class SCOPeClass(ClassificationTask):
 
 class SCOPeFold(ClassificationTask):
   def __init__(self, config: configure_finetuning.FinetuningConfig, tokenizer):
-    with open("./ft_data/scope/folds.tsv") as f:
-      categories = [line.rstrip('\n') for line in f]
+    categories = read_tsv(os.path.join(self.config.raw_data_dir(self.name), "categories" + ".tsv"))
+    # with open("./ft_data/scope/folds.tsv") as f:
+    #   categories = [line.rstrip('\n') for line in f]
     super(SCOPeFold, self).__init__(config, "scope", tokenizer, categories)
 
   #TODO:  test
@@ -464,8 +466,9 @@ class SCOPeFold(ClassificationTask):
 
 class SCOPeSuperfamily(ClassificationTask):
   def __init__(self, config: configure_finetuning.FinetuningConfig, tokenizer):
-    with open("./ft_data/scope/superfamilies.tsv") as f:
-      categories = [line.rstrip('\n') for line in f]
+    categories = read_tsv(os.path.join(self.config.raw_data_dir(self.name), "categories" + ".tsv"))
+    # with open("./ft_data/scope/superfamilies.tsv") as f:
+    #   categories = [line.rstrip('\n') for line in f]
     super(SCOPeSuperfamily, self).__init__(config, "scope", tokenizer, categories)
 
   #TODO:  test
@@ -475,8 +478,9 @@ class SCOPeSuperfamily(ClassificationTask):
 
 class SCOPeFamily(ClassificationTask):
   def __init__(self, config: configure_finetuning.FinetuningConfig, tokenizer):
-    with open("./ft_data/scope/families.tsv") as f:
-      categories = [line.rstrip('\n') for line in f]
+    categories = read_tsv(os.path.join(self.config.raw_data_dir(self.name), "categories" + ".tsv"))
+    # with open("./ft_data/scope/families.tsv") as f:
+    #   categories = [line.rstrip('\n') for line in f]
     super(SCOPeFamily, self).__init__(config, "scope", tokenizer, categories)
 
   #TODO:  test
@@ -485,8 +489,9 @@ class SCOPeFamily(ClassificationTask):
 
 class SCOPeSpecies(ClassificationTask):
   def __init__(self, config: configure_finetuning.FinetuningConfig, tokenizer):
-    with open("./ft_data/scope/taxids.tsv") as f:
-      categories = [line.rstrip('\n') for line in f]
+    categories = read_tsv(os.path.join(self.config.raw_data_dir(self.name), "categories" + ".tsv"))
+    # with open("./ft_data/scope/taxids.tsv") as f:
+    #   categories = [line.rstrip('\n') for line in f]
     super(SCOPeSpecies, self).__init__(config, "scope", tokenizer, categories)
 
   #TODO:  test
