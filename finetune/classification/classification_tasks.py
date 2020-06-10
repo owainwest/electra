@@ -30,6 +30,7 @@ from finetune import task
 from finetune.classification import classification_metrics
 from model import tokenization
 from util import utils
+import pandas as pd
 
 
 class InputExample(task.Example):
@@ -437,3 +438,48 @@ class STS(RegressionTask):
       examples += self._load_glue(
           lines, split, -3, -2, -1, True, len(examples), True)
     return examples
+
+
+
+class SCOPeClass(ClassificationTask):
+  def __init__(self, config: configure_finetuning.FinetuningConfig, tokenizer):
+    with open("./ft_data/scope/scopeclasses.tsv") as f:
+      categories = [line.rstrip('\n') for line in f]
+    super(SCOPeClass, self).__init__(config, "scope", tokenizer, categories)
+
+  #TODO:  test
+  def _create_examples(self, lines, split):
+    return self._load_glue(lines, split, 5, None, 0)
+
+
+class SCOPeFold(ClassificationTask):
+  def __init__(self, config: configure_finetuning.FinetuningConfig, tokenizer):
+    with open("./ft_data/scope/folds.tsv") as f:
+      categories = [line.rstrip('\n') for line in f]
+    super(SCOPeFold, self).__init__(config, "scope", tokenizer, categories)
+
+  #TODO:  test
+  def _create_examples(self, lines, split):
+    return self._load_glue(lines, split, 5, None, 1)
+
+class SCOPeSuperfamily(ClassificationTask):
+  def __init__(self, config: configure_finetuning.FinetuningConfig, tokenizer):
+    with open("./ft_data/scope/superfamilies.tsv") as f:
+      categories = [line.rstrip('\n') for line in f]
+    super(SCOPeSuperfamily, self).__init__(config, "scope", tokenizer, categories)
+
+  #TODO:  test
+  def _create_examples(self, lines, split):
+    return self._load_glue(lines, split, 5, None, 2)
+
+
+class SCOPeFamily(ClassificationTask):
+  def __init__(self, config: configure_finetuning.FinetuningConfig, tokenizer):
+    with open("./ft_data/scope/families.tsv") as f:
+      categories = [line.rstrip('\n') for line in f]
+    super(SCOPeFamily, self).__init__(config, "scope", tokenizer, categories)
+
+  #TODO:  test
+  def _create_examples(self, lines, split):
+    return self._load_glue(lines, split, 5, None, 3)
+    
