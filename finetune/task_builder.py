@@ -75,8 +75,8 @@ def get_task(config: configure_finetuning.FinetuningConfig, task_name,
     return classification_tasks.SCOPeSuperfamily(config, tokenizer)
   elif task_name == "scopefamily":
     return classification_tasks.SCOPeFamily(config, tokenizer)
-  elif task_name == "scopespecies":
-    return classification_tasks.SCOPeSpecies(config, tokenizer)
+  elif task_name == "scopetaxid":
+    return classification_tasks.SCOPeTaxID(config, tokenizer)
 
   else:
     raise ValueError("Unknown task " + task_name)
